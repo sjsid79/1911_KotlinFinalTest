@@ -3,10 +3,19 @@ package com.tjoeun.a201911_kotlinfinaltest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class LottoActivity : AppCompatActivity() {
+class LottoActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto)
+    }
+
+    override fun setupEvents() {
+
+    }
+
+    override fun setValues() {
+
     }
 }
