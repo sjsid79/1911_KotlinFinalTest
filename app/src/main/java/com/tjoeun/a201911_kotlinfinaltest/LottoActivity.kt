@@ -2,6 +2,7 @@ package com.tjoeun.a201911_kotlinfinaltest
 
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_lotto.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -24,7 +25,7 @@ class LottoActivity : BaseActivity() {
     override fun setupEvents() {
 
         buyOneLottoBtn.setOnClickListener {
-//            숫자를 랜덤으로 6개 생성. 1~45 / 중복 안됨.
+            //            숫자를 랜덤으로 6개 생성. 1~45 / 중복 안됨.
             setThisWeekLottoNum()
 
             checkLottoRank()
@@ -32,7 +33,7 @@ class LottoActivity : BaseActivity() {
 
     }
 
-//    당첨 결과를 체크. 몇등인지 확인
+    //    당첨 결과를 체크. 몇등인지 확인
     fun checkLottoRank() {
 
 //        6개 : 1등 => 20억원.
@@ -41,6 +42,31 @@ class LottoActivity : BaseActivity() {
 //        3개 : 5등 => 5천원
 //    그 이하 : 꽝. => 0원
 
+        var correctCount = 0
+        for (myNum in myNumArrayList) {
+
+            for (thisWeekNum in lottoNumArrayList) {
+                if (myNum == thisWeekNum) {
+                    correctCount++
+                }
+            }
+        }
+
+        if (correctCount == 6) {
+            Toast.makeText(mContext, "1등 당첨!", Toast.LENGTH_SHORT).show()
+        }
+        else if (correctCount == 5) {
+            Toast.makeText(mContext, "3등 당첨!", Toast.LENGTH_SHORT).show()
+        }
+        else if (correctCount == 4) {
+            Toast.makeText(mContext, "4등 당첨!", Toast.LENGTH_SHORT).show()
+        }
+        else if (correctCount == 3) {
+            Toast.makeText(mContext, "5등 당첨!", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Toast.makeText(mContext, "꽝입니다.", Toast.LENGTH_SHORT).show()
+        }
 
 
     }
@@ -61,7 +87,7 @@ class LottoActivity : BaseActivity() {
 //            반복문 : 횟수가 명확하면 for. 언제까지 돌려야할지 모르면 while(true) => if (조건) break
             while (true) {
 //                1~45 사이의 랜덤값을 뽑아서 변수에 임시 저장.
-                randomNum  = (Math.random() * 45 + 1).toInt()
+                randomNum = (Math.random() * 45 + 1).toInt()
 
 //                일단 중복되지 않는다. (괜찮다) 라고 전제하고 검사 시작
                 var isDuplOk = true
