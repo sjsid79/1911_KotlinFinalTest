@@ -11,6 +11,7 @@ import kotlin.collections.ArrayList
 class LottoActivity : BaseActivity() {
 
     var mHandler = Handler()
+    var isNowBuying = false
 
 
 //    누적 사용금액
@@ -44,7 +45,19 @@ class LottoActivity : BaseActivity() {
     override fun setupEvents() {
 
         autoLottoBtn.setOnClickListener {
-            doLottoLoop()
+            if (!isNowBuying) {
+                doLottoLoop()
+                isNowBuying = true
+                autoLottoBtn.text = "구매 중단"
+            }
+            else {
+
+//                반복 중단시키기.
+                stopLottoLoop()
+                isNowBuying = false
+                autoLottoBtn.text = "자동 구매 재개"
+            }
+
         }
 
         buyOneLottoBtn.setOnClickListener {
@@ -132,8 +145,8 @@ class LottoActivity : BaseActivity() {
 
     }
 
-    fun doLottoLoop() {
-        mHandler.post {
+    var lottoRunnable = object : Runnable {
+        override fun run() {
             if (usedMoney < 100000000) {
                 setThisWeekLottoNum()
                 checkLottoRank()
@@ -147,6 +160,16 @@ class LottoActivity : BaseActivity() {
                 }
             }
         }
+
+    }
+
+    fun doLottoLoop() {
+
+        mHandler.post(lottoRunnable)
+    }
+
+    fun stopLottoLoop() {
+        mHandler.removeCallbacks(lottoRunnable)
     }
 
     fun setThisWeekLottoNum() {
