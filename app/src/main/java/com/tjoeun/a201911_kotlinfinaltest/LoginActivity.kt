@@ -3,7 +3,9 @@ package com.tjoeun.a201911_kotlinfinaltest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.tjoeun.a201911_kotlinfinaltest.utils.ContextUtil
+import com.tjoeun.a201911_kotlinfinaltest.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
 
 class LoginActivity : BaseActivity() {
 
@@ -20,7 +22,12 @@ class LoginActivity : BaseActivity() {
             val userId = userIdEdt.text.toString()
             val userPw = userPwEdt.text.toString()
 
+            ServerUtil.postRequestLogin(mContext, userId, userPw, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject) {
 
+                }
+
+            })
 
         }
 
