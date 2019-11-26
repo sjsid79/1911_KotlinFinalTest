@@ -2,6 +2,7 @@ package com.tjoeun.a201911_kotlinfinaltest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tjoeun.a201911_kotlinfinaltest.utils.ContextUtil
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -17,19 +18,15 @@ class LoginActivity : BaseActivity() {
 
         saveIdCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
 
-            if (isChecked) {
-//                체크박스가 체크 되는 상황
-            }
-            else {
-//                  해제되는 상황
-            }
 
+            ContextUtil.setSaveIdChecked(mContext, isChecked)
         }
 
     }
 
     override fun setValues() {
 
+        saveIdCheckBox.isChecked = ContextUtil.getSaveIdChecked(mContext)
     }
 
 }
