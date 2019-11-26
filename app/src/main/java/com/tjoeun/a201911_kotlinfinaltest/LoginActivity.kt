@@ -16,6 +16,14 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        loginBtn.setOnClickListener {
+            val userId = userIdEdt.text.toString()
+            val userPw = userPwEdt.text.toString()
+
+
+
+        }
+
         saveIdCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
