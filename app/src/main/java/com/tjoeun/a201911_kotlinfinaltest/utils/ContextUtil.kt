@@ -12,6 +12,7 @@ class ContextUtil {
         val SAVE_ID_CHECKED = "SAVE_ID_CHECKED"
 
         val USER_TOKEN = "USER_TOKEN"
+        val USER_ID = "USER_ID"
 
         fun setSaveIdChecked(context:Context, isChecked:Boolean) {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
@@ -32,6 +33,17 @@ class ContextUtil {
         fun getUserToken(context: Context) : String {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return pref.getString(USER_TOKEN, "")!!
+        }
+
+
+        fun setUserId(context:Context, userId:String) {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            pref.edit().putString(USER_ID, userId).apply()
+        }
+
+        fun getUserId(context: Context) : String {
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getString(USER_ID, "")!!
         }
 
     }
