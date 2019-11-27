@@ -18,6 +18,8 @@ class UserData : Serializable {
             user.name = json.getString("name")
             user.phone = json.getString("phone")
 
+            user.category = Category.getCategoryFromJson(json.getJSONObject("category"))
+
             return user
         }
     }
