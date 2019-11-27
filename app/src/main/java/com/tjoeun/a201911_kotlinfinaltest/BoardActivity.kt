@@ -3,7 +3,9 @@ package com.tjoeun.a201911_kotlinfinaltest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.tjoeun.a201911_kotlinfinaltest.adapters.BoardViewPagerAdapter
 import com.tjoeun.a201911_kotlinfinaltest.utils.GlobalData
+import kotlinx.android.synthetic.main.activity_board.*
 
 class BoardActivity : BaseActivity() {
 
@@ -19,6 +21,9 @@ class BoardActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        myViewPager.adapter = BoardViewPagerAdapter(supportFragmentManager)
+
 
 //        토스트로 로그인한 사람의 이름을 띄워주자.
         if (GlobalData.loginUserData != null) {
