@@ -64,7 +64,10 @@ class NoticeListFragment : BaseFragment() {
                         noticeList.add(Notice.getNoticeFromJson(notices.getJSONObject(i)))
                     }
 
-                    noticeAdapter?.notifyDataSetChanged()
+                    activity!!.runOnUiThread {
+                        noticeAdapter?.notifyDataSetChanged()
+                    }
+
 
                 }
                 else {

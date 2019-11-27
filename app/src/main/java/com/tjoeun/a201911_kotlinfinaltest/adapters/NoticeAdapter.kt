@@ -28,6 +28,17 @@ class NoticeAdapter(context:Context, res:Int, list:ArrayList<Notice>)
 
         var row = tempRow!!
 
+        val data = mList.get(position)
+
+        val titleTxt = row.findViewById<TextView>(R.id.titleTxt)
+        val createAtTxt = row.findViewById<TextView>(R.id.createAtTxt)
+        val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
+
+        titleTxt.text = data.title
+        contentTxt.text = data.content
+        createAtTxt.text = data.getFormattedCreatedAt()
+
+
         return row
 
     }
