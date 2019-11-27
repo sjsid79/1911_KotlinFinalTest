@@ -8,6 +8,9 @@ class UserData : Serializable {
     var name = ""
     var phone = ""
 
+    var category = Category()
+
+
     companion object {
         fun getUserDataFromJsonObject(json:JSONObject) : UserData {
             val user = UserData()
